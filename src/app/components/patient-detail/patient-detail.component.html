@@ -1,0 +1,82 @@
+<div class="row">
+    <div class="col-md-6">
+        <a routerLink="/" class="btn-outline-dark btn-sm">
+            <i class="fa fa-arrow-circle-o-left"></i> Back to Patients List
+        </a>
+    </div>
+    <div class="col-md-6"></div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2><i class="fa fa-user"></i> {{ username}}</h2>
+    </div>
+    <div class="col-md-6">
+        <h5 class="text-right text-primary">Total Records : {{ recordsCount }}</h5>
+    </div>
+</div>
+
+<div style="display: block"  *ngIf="records?.length > 0">
+    <canvas baseChart
+    [datasets]="lineChartData"
+    [labels]="lineChartLabels"
+    [options]="lineChartOptions"
+    [legend]="lineChartLegend"
+    [colors]="lineChartColors"
+    [chartType]="lineChartType"></canvas>
+</div>
+
+<!-- <table *ngIf="records?.length > 0; else noRecords" class="table table-striped">
+    <thead class="thead-inverse">
+        <tr>
+            <th>Location</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let record of records">
+            <td>{{ record.location }}</td>
+            <td> {{ record.time }}</td>
+        </tr>
+    </tbody>
+</table>
+<mat-paginator [pageSizeOption] = "[5, 10, 20]" [pageSIze]="5" showFirstLastButtons></mat-paginator>
+
+<ng-template #noRecords>
+    <hr>
+    <h5>There are no records in the system.</h5>
+</ng-template> -->
+<div class="mat-elevation-z1" >
+    <table mat-table [dataSource]="dataSource" *ngIf="records?.length > 0; else NoRecords">
+
+        <!-- Index Column -->
+        <ng-container matColumnDef="index">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let record; let i = index"> {{ i+1 }} </td>
+        </ng-container>
+
+        <!-- Location Column -->
+        <ng-container matColumnDef="location">
+            <th mat-header-cell *matHeaderCellDef> Note </th>
+            <td mat-cell *matCellDef="let record"> {{ record.location }} </td>
+        </ng-container>
+
+        <!-- Time Column -->
+        <ng-container matColumnDef="time">
+            <th mat-header-cell *matHeaderCellDef> Time </th>
+            <td mat-cell *matCellDef="let record"> {{ record.time }} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+
+<ng-template #NoRecords>
+    <hr>
+    <h5>There are no records in the system.</h5>
+</ng-template>
+

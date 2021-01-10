@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-transparent mb-4">
+    <div class="container">
+    <a routerLink="/" class="navbar-brand">Doctor Dashbaord</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarMain">
+        <!-- <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a routerLink="/patients" class="nav-link">Patient List</a>
+        </li>
+        </ul> -->
+        <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a *ngIf="isLogin == true" (click)="logout()" href="" class="nav-link">Logout</a>
+        </li>
+        <li class="nav-item">
+            <a *ngIf="isLogin != true" href="" class="nav-link">Login</a>
+        </li>
+        </ul>
+    </div>
+    </div>
+</nav>
+
+<!-- <ng-template #showRegister>
+    <a href="" class="nav-link">Register</a>
+</ng-template>
+<ng-template #showLogin>
+    <a routerLink="/login" class="nav-link">Login</a>
+</ng-template> -->
